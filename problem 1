@@ -1,0 +1,22 @@
+// Print passed students
+console.log("Passed Students:");
+passedStudents.forEach(student => {
+    console.log(student.name, student.marks);
+});
+
+// Print all students report
+console.log("\nAll Students Report:");
+studentReport.forEach(student => {
+    console.log(
+        student.name,
+        student.marks,
+        student.attendance,
+        student.grade
+    );
+});
+
+// Print average
+console.log("\nClass Average =", averageMarks.toFixed(2));
+
+// Print topper
+console.log("\nTopper =", topper.name, "(" + topper.marks + ")");
