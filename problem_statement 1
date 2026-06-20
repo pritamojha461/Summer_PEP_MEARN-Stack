@@ -1,0 +1,70 @@
+// Student Performance Analyzer
+// Name: Your Name
+// This program uses filter, map and reduce methods
+
+const students = [
+  { id: 1, name: "Aman", marks: 85, attendance: 92 },
+  { id: 2, name: "Riya", marks: 38, attendance: 76 },
+  { id: 3, name: "Karan", marks: 67, attendance: 81 },
+  { id: 4, name: "Simran", marks: 91, attendance: 88 },
+  { id: 5, name: "Raj", marks: 45, attendance: 60 },
+  { id: 6, name: "Neha", marks: 29, attendance: 95 }
+];
+
+// Step 1: Find students who passed
+const passedStudents = students.filter(student => student.marks >= 40);
+
+// Step 2: Add grade for every student
+const studentReport = students.map(student => {
+
+    let grade;
+
+    // Checking grade according to marks
+    if (student.marks >= 80) {
+        grade = "A";
+    } else if (student.marks >= 60) {
+        grade = "B";
+    } else if (student.marks >= 40) {
+        grade = "C";
+    } else {
+        grade = "F";
+    }
+
+    return {
+        name: student.name,
+        marks: student.marks,
+        attendance: student.attendance,
+        grade: grade
+    };
+});
+
+// Step 3: Calculate average marks
+const totalMarks = students.reduce((sum, student) => {
+    return sum + student.marks;
+}, 0);
+
+const averageMarks = totalMarks / students.length;
+
+// Step 4: Find topper
+const topper = students.reduce((best, student) => {
+    return student.marks > best.marks ? student : best;
+});
+
+// Step 5: Display Output
+console.log("===== Passed Students =====");
+passedStudents.forEach(student => {
+    console.log(`${student.name} - ${student.marks}`);
+});
+
+console.log("\n===== Student Report =====");
+studentReport.forEach(student => {
+    console.log(
+        `Name: ${student.name}, Marks: ${student.marks}, Attendance: ${student.attendance}%, Grade: ${student.grade}`
+    );
+});
+
+console.log("\n===== Class Average =====");
+console.log(`Average Marks: ${averageMarks.toFixed(2)}`);
+
+console.log("\n===== Class Topper =====");
+console.log(`${topper.name} scored ${topper.marks} marks.`);
